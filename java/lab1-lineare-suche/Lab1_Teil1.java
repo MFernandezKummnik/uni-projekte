@@ -1,45 +1,46 @@
+/**
+ * Lab 1 - Teil 1: Laufzeitmessung der linearen Suche.
+ *
+ * Gesucht wird bewusst ein Wert, der nicht im Array vorkommt (Zufallswerte 0-9999,
+ * gesucht wird 100000). So wird immer das gesamte Array durchlaufen (Worst Case, O(n)).
+ *
+ * Start (Java 25, bei Java 21+ mit --enable-preview):
+ *   java -Xmx6g Lab1_Teil1.java
+ */
 public class Lab1_Teil1 {
+
+    static final int GESUCHTER_WERT = 100_000;
+    static final int[] GROESSEN = {70_000_000, 140_000_000, 280_000_000, 520_000_000};
+
     void main() {
-        int[] zufallsZahlen = new int[70000000];
-        for (int i = 0; i < zufallsZahlen.length; i++) {
-            zufallsZahlen[i] = (int)(Math.random() * 10000);
+        for (int groesse : GROESSEN) {
+            int[] zahlen = zufallsArray(groesse);
+
+            long start = System.nanoTime();
+            int index = linearSearch(zahlen, GESUCHTER_WERT);
+            long dauerNs = System.nanoTime() - start;
+
+            System.out.printf("Groesse: %,d | Ergebnis: %d | Dauer: %.1f ms%n",
+                    groesse, index, dauerNs / 1_000_000.0);
         }
-        double x =System.nanoTime();
-        System.out.println(linearSearch(zufallsZahlen, 100000));
-        double y = System.nanoTime()-x;
-        System.out.println(y);
-        int[] zufallsZahlen2 = new int[140000000];
-        for (int i = 0; i < zufallsZahlen2.length; i++) {
-            zufallsZahlen2[i] = (int)(Math.random() * 10000);
-        }
-        double x1 =System.nanoTime();
-        System.out.println(linearSearch(zufallsZahlen2, 100000));
-        double y1 = System.nanoTime()-x1;
-        System.out.println(y1);
-        int[] zufallsZahlen3 = new int[280000000];
-        for (int i = 0; i < zufallsZahlen3.length; i++) {
-            zufallsZahlen3[i] = (int)(Math.random() * 10000);
-        }
-        double x3 =System.nanoTime();
-        System.out.println(linearSearch(zufallsZahlen3, 100000));
-        double y3 = System.nanoTime()-x3;
-        System.out.println(y3);
-        int[] zufallsZahlen4 = new int[520000000];
-        for (int i = 0; i < zufallsZahlen4.length; i++) {
-            zufallsZahlen4[i] = (int)(Math.random() * 10000);
-        }
-        double x4 =System.nanoTime();
-        System.out.println(linearSearch(zufallsZahlen4, 100000));
-        double y4 = System.nanoTime()-x4;
-        System.out.println(y4);
     }
 
-    public int linearSearch(int[] a, int val) {
+    /** Erzeugt ein Array mit Zufallszahlen im Bereich 0 bis 9999. */
+    static int[] zufallsArray(int groesse) {
+        int[] a = new int[groesse];
         for (int i = 0; i < a.length; i++) {
-            if (val == a[i])
-                return i;
+            a[i] = (int) (Math.random() * 10_000);
         }
-            return -1;
+        return a;
+    }
 
+    /** Gibt den Index von val zurück oder -1, falls der Wert nicht vorkommt. */
+    static int linearSearch(int[] a, int val) {
+        for (int i = 0; i < a.length; i++) {
+            if (a[i] == val) {
+                return i;
+            }
+        }
+        return -1;
     }
 }

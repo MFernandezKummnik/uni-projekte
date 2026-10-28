@@ -1,0 +1,188 @@
+import java.awt.Graphics;
+import java.awt.Canvas;
+import java.awt.Color;
+import java.awt.Rectangle;
+import java.awt.event.KeyListener;
+import java.awt.event.KeyEvent;
+import javax.swing.JFrame;
+import java.util.LinkedList;
+import java.util.Random;
+
+
+
+// Enumerated type representing the snake's direction
+enum Direction {
+    RIGHT, LEFT, UP, DOWN;
+}
+
+public class Snake extends Canvas implements KeyListener {
+    // Game objects
+    private LinkedList<Rectangle> snake;
+    private Rectangle pellet;
+    private Direction direction;
+    private Direction lastMoved;
+    private final Random random = new Random();
+
+    // Constants
+    private final int WIDTH = 400;
+    private final int HEIGHT = 400;
+    private final int SIZE = 10; // Side length of squares
+
+    /**
+     * Constructor - set initial positions of snake and pellet
+     */
+    public Snake() {
+        // Set up game window and listen for keyboard
+        setSize(WIDTH, HEIGHT);
+        addKeyListener(this);
+        setFocusable(true);
+
+        // Starting locations
+        this.snake = new LinkedList<Rectangle>();
+        this.snake.add(new Rectangle(90, 90, SIZE, SIZE));
+        this.snake.add(new Rectangle(90 - SIZE, 90, SIZE, SIZE));
+        this.pellet = new Rectangle(300, 240, SIZE, SIZE);
+
+        // Initial direction
+        this.direction = Direction.RIGHT;
+        this.lastMoved = Direction.RIGHT;
+    }
+
+    /**
+     * Listen for keyboard input
+     */
+    //I ADDED THAT THE SNAKE CANT GO TE OPPOSITE DIRECTION IN ONE CLICK
+    public void keyPressed(KeyEvent e) {
+        int code = e.getKeyCode();
+
+        if (code == KeyEvent.VK_RIGHT && this.lastMoved != Direction.LEFT) {
+            this.direction = Direction.RIGHT;
+        }
+
+        if (code == KeyEvent.VK_LEFT && this.lastMoved != Direction.RIGHT) {
+            this.direction = Direction.LEFT;
+        }
+
+        if (code == KeyEvent.VK_UP && this.lastMoved != Direction.DOWN) {
+            this.direction = Direction.UP;
+        }
+
+        if (code == KeyEvent.VK_DOWN && this.lastMoved != Direction.UP) {
+            this.direction = Direction.DOWN;
+        }
+    }
+
+
+    public void keyTyped(KeyEvent e) { /* Empty */ }
+    public void keyReleased(KeyEvent e) { /* Empty */ }
+
+    /**
+     * Draw each object to the screen
+     */
+    public void paint(Graphics g) {
+        // Clear the screen
+        g.setColor(Color.BLACK);
+        g.fillRect(0, 0, this.getWidth(), this.getHeight());
+
+        g.setColor(Color.GRAY);
+        g.fillRect(0, 0, WIDTH, SIZE);
+        g.fillRect(0, HEIGHT - SIZE, WIDTH, SIZE);
+        g.fillRect(0, 0, SIZE, HEIGHT);
+        g.fillRect(WIDTH - SIZE, 0, SIZE, HEIGHT);
+
+        // Draw the snake's body segments
+        g.setColor(Color.GREEN);
+        for (Rectangle segment : this.snake) {
+            g.fillRect(segment.x, segment.y, SIZE, SIZE);
+        }
+
+        // Draw the pellet
+        g.setColor(Color.RED);
+        g.fillRect(pellet.x, pellet.y, SIZE, SIZE);
+    }
+
+    /**
+     * The main game loop
+     */
+    public void run() {
+
+        boolean running = true;
+        while (running) {
+
+            // Sleep for a moment
+            try {
+                Thread.sleep(250);
+            } catch(Exception e) {
+                e.printStackTrace();
+            }
+
+            // Get the current head segment
+            Rectangle head = this.snake.getFirst();
+            int newX = head.x;
+            int newY = head.y;
+            // Use the current head and direction to find
+            // the coordinates of the new head segment
+            if (this.direction == Direction.RIGHT) {
+                newX += SIZE;// Move one square right
+            } else if (this.direction == Direction.LEFT) {
+                newX -= SIZE; // Move one square left
+            } else if (this.direction == Direction.UP) {
+                newY -= SIZE; // Move one square up
+            } else if (this.direction == Direction.DOWN) {
+                newY += SIZE; // Move one square down
+            }
+            this.lastMoved = this.direction;
+
+            // Put the new head segment on the front of the list
+
+            Rectangle newHead = new Rectangle(newX, newY, SIZE, SIZE);
+            //MY CODE START
+            if (newX <= 0 || newX >= WIDTH - SIZE || newY <= 0 || newY >= HEIGHT - SIZE) {
+                running = false;
+            }
+
+            for (Rectangle segment : this.snake) {
+                if (newHead.equals(segment)) {
+                    running = false;
+                    break;
+                }
+            }
+            //MY CODE ENDS
+            this.snake.addFirst(newHead);
+            // If the snake does not eat the pellet, remove the tail
+            //MY CODE
+            if (newHead.intersects(pellet)) {
+                placePellet();
+            } else {
+                this.snake.removeLast();
+            }
+            //MY CODE ENDs
+            // Draw
+            repaint();
+        }
+    }
+
+    /**
+     * Main
+     */
+    public static void main(String[] args) {
+        // Construct the driver object
+        Snake game = new Snake();
+
+        // Create a JFrame and attach the driver to it
+        JFrame frame = new JFrame();
+        frame.add(game);
+        frame.pack();
+        frame.setVisible(true);
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+
+        // Call the run method -- this is the main game loop
+        game.run();
+    }
+    //mycode
+    private void placePellet() {
+        int x = (1+ random.nextInt(WIDTH / SIZE-2))* SIZE;
+        int y = (1+ random.nextInt(HEIGHT / SIZE-2))* SIZE;
+        this.pellet = new Rectangle(x, y, SIZE, SIZE);
+    }
+}

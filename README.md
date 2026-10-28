@@ -10,7 +10,7 @@ Schwerpunkte: Shell-Scripting unter Linux und Java-Grundlagen.
 | [01 – Dezimal-Umrechner](shell/01-dezimal-umrechner) | Bash | Rechnet eine Dezimalzahl in Binär, Oktal oder Hexadezimal um (Restwert-Division) |
 | [02 – Binär-Umrechner](shell/02-binaer-umrechner) | Bash | Rechnet Oktal-, Dezimal- und Hexadezimalzahlen ins Binärsystem um, inkl. Prüfung auf ungültige Ziffern |
 | [Lab 1 – Lineare Suche](java/lab1-lineare-suche) | Java | Laufzeitmessung der linearen Suche bei wachsender Arraygröße (70 Mio. bis 520 Mio. Elemente) |
-| [Lab 2 – Snake](java/lab2-snake) | Java | Snake-Spiel auf Basis eines vorgegebenen Gerüsts; von mir ergänzt: Richtungssperre, Wand- und Selbstkollision, Fressen/Wachsen, Pellet-Platzierung |
+| [Lab 2 – Snake](java/lab2-snake) | Java | Snake-Spiel auf Basis eines vorgegebenen Gerüsts; von mir ergänzt: Richtungssperre, sichtbare Wand, Wand- und Selbstkollision, Fressen/Wachsen, Pellet-Platzierung |
 
 ## Shell-Skripte ausführen
 

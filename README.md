@@ -11,6 +11,7 @@ Schwerpunkte: Shell-Scripting unter Linux und Java-Grundlagen.
 | [02 – Binär-Umrechner](shell/02-binaer-umrechner) | Bash | Rechnet Oktal-, Dezimal- und Hexadezimalzahlen ins Binärsystem um, inkl. Prüfung auf ungültige Ziffern |
 | [Lab 1 – Lineare Suche](java/lab1-lineare-suche) | Java | Laufzeitmessung der linearen Suche bei wachsender Arraygröße (70 Mio. bis 520 Mio. Elemente) |
 | [Lab 2 – Snake](java/lab2-snake) | Java | Snake-Spiel auf Basis eines vorgegebenen Gerüsts; von mir ergänzt: Richtungssperre, sichtbare Wand, Wand- und Selbstkollision, Fressen/Wachsen, Pellet-Platzierung |
+| [Lab 3 – Homage to the Square](java/lab3-homage) | Java | Rekursiv verschachtelte Quadrate in Zufallsfarben nach Josef Albers; von mir: die rekursive Methode `drawSquares` und ihr Start aus `paint()` |
 
 ## Shell-Skripte ausführen
 
@@ -43,3 +44,4 @@ Gesucht wird bewusst ein Wert (100000), der nicht im Array vorkommt (Zufallswert
 - Bash: `case`, `while`, Arithmetik mit `$(( ))`, String-Slicing `${var:i:1}`, Argumente vs. interaktive Eingabe
 - Java: Arrays, Laufzeitmessung mit `System.nanoTime()`, Komplexität der linearen Suche
 - Java: Spielschleife, `enum`, `LinkedList`, Kollisionserkennung mit `Rectangle`, Arbeiten mit vorgegebenem Code
+- Java: Rekursion (Basisfall, rekursiver Schritt), Zeichnen mit `Graphics` und zufälligen RGB-Farben

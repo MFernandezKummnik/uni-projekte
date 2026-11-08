@@ -37,4 +37,3 @@ Die Farben werden bei jedem Neuzeichnen (z. B. beim Verändern der Fenstergröß
 - Ganzzahldivision und `(int)`-Casts: Größen schrumpfen bei kleinen Startwerten schnell auf 0
 - Parameterreihenfolge muss exakt zur vorgegebenen Signatur passen
 
-Die Lösung habe ich mit Unterstützung von KI (Claude) erarbeitet; den Code habe ich selbst geschrieben und verstehe ihn.

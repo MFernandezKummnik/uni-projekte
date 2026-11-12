@@ -4,3 +4,7 @@
 .vscode/
 out/
 .DS_Store
+
+# Kompilierte C/C++-Programme
+*.o
+scheduler

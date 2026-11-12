@@ -1,7 +1,7 @@
 # Uni-Projekte – Wirtschaftsinformatik (HTWG Konstanz)
 
 Übungs- und Laborprojekte aus meinem Studium der Wirtschaftsinformatik (B.Sc.) an der HTWG Konstanz, 2. Semester.
-Schwerpunkte: Shell-Scripting unter Linux und Java-Grundlagen.
+Schwerpunkte: Shell-Scripting unter Linux, Java-Grundlagen sowie C/C++ im Fach Betriebssysteme.
 
 ## Inhalt
 
@@ -12,6 +12,7 @@ Schwerpunkte: Shell-Scripting unter Linux und Java-Grundlagen.
 | [Lab 1 – Lineare Suche](java/lab1-lineare-suche) | Java | Laufzeitmessung der linearen Suche bei wachsender Arraygröße (70 Mio. bis 520 Mio. Elemente) |
 | [Lab 2 – Snake](java/lab2-snake) | Java | Snake-Spiel auf Basis eines vorgegebenen Gerüsts; von mir ergänzt: Richtungssperre, sichtbare Wand, Wand- und Selbstkollision, Fressen/Wachsen, Pellet-Platzierung |
 | [Lab 3 – Homage to the Square](java/lab3-homage) | Java | Rekursiv verschachtelte Quadrate in Zufallsfarben nach Josef Albers; von mir: die rekursive Methode `drawSquares` und ihr Start aus `paint()` |
+| [Lab 2.2 – Process Scheduling](cpp/lab2.2-scheduling) | C++ | CPU-Scheduler mit FCFS und SJF auf einer selbst verwalteten verketteten Liste; von mir: `Process.cpp`, die Listenmethoden in `ProcessList.cpp` und `Scheduler.cpp` |
 
 ## Shell-Skripte ausführen
 
@@ -38,6 +39,14 @@ java -Xmx6g Lab1_Teil1.java
 
 Gesucht wird bewusst ein Wert (100000), der nicht im Array vorkommt (Zufallswerte 0–9999). So wird immer der Worst Case gemessen und die lineare Laufzeit O(n) sichtbar: Bei doppelter Arraygröße verdoppelt sich ungefähr die Suchzeit.
 
+## C++-Lab ausführen
+
+```bash
+cd cpp/lab2.2-scheduling
+g++ -Wall -o scheduler Main.cpp Process.cpp ProcessList.cpp Scheduler.cpp
+./scheduler
+```
+
 ## Was ich dabei gelernt habe
 
 - Zahlensysteme und Umrechnung per Restwert-Division bzw. Ziffernzuordnung
@@ -45,3 +54,4 @@ Gesucht wird bewusst ein Wert (100000), der nicht im Array vorkommt (Zufallswert
 - Java: Arrays, Laufzeitmessung mit `System.nanoTime()`, Komplexität der linearen Suche
 - Java: Spielschleife, `enum`, `LinkedList`, Kollisionserkennung mit `Rectangle`, Arbeiten mit vorgegebenem Code
 - Java: Rekursion (Basisfall, rekursiver Schritt), Zeichnen mit `Graphics` und zufälligen RGB-Farben
+- C++: Klassen, Konstruktor/Destruktor, Zeiger und `->`, verkettete Listen, `new`/`delete` und Speicherverantwortung

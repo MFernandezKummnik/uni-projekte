@@ -41,4 +41,4 @@ chmod +x uebung1_2.sh
 - Eingaben prüfen und mit einem Merker (Flag) auf Fehler reagieren
 - Warum Oktal- und Hex-Ziffern direkt in 3- bzw. 4-Bit-Gruppen übersetzt werden können, Dezimalzahlen aber nicht
 
-Beim Shell-Scripting hat mir meine Vorerfahrung aus dem Bau meines eigenen Homeservers sehr geholfen: Mit der Linux-Kommandozeile, Bash und SSH hatte ich dort schon viel gearbeitet.
+Beim Shell-Scripting hat mir meine Vorerfahrung aus dem Bau meines eigenen Homeservers ([secure-home-server](https://github.com/MFernandezKummnik/secure-home-server)) sehr geholfen: Mit der Linux-Kommandozeile, Bash und SSH hatte ich dort schon viel gearbeitet.

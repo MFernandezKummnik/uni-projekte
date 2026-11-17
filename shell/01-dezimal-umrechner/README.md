@@ -42,4 +42,4 @@ chmod +x uebung1.sh
 - Rechnen in Bash mit `$(( ))`, Ganzzahldivision und Modulo
 - Umrechnung von Zahlensystemen per Restwert-Division
 
-Beim Shell-Scripting hat mir meine Vorerfahrung aus dem Bau meines eigenen Homeservers sehr geholfen: Mit der Linux-Kommandozeile, Bash und SSH hatte ich dort schon viel gearbeitet.
+Beim Shell-Scripting hat mir meine Vorerfahrung aus dem Bau meines eigenen Homeservers ([secure-home-server](https://github.com/MFernandezKummnik/secure-home-server)) sehr geholfen: Mit der Linux-Kommandozeile, Bash und SSH hatte ich dort schon viel gearbeitet.
